@@ -1,49 +1,75 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="4/22/2015 6:23:32 AM"
+  DTS:CreationDate="4/22/2015 6:12:19 AM"
   DTS:CreationName="SSIS.Package.3"
   DTS:CreatorComputerName="GEEKTOP00"
   DTS:CreatorName="GeekTop00\Geek"
-  DTS:DTSID="{B73F150B-A726-483D-B280-80049602DBC2}"
+  DTS:DTSID="{187A193C-86FB-4019-A74F-5ACDDA1BB646}"
   DTS:ExecutableType="SSIS.Package.3"
   DTS:LastModifiedProductVersion="11.0.5058.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="PackageDeployment"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{3F151A8B-7955-4499-86B1-8DF6D594A1FB}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{F5DBAE42-F47A-4AFA-B3A4-1DC259BC3AB1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[(local).AdventureWorks2012]"
+      DTS:refId="Package.ConnectionManagers[OLEDB_AdventureWorks2012]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{75F6EABB-A159-4402-A760-7E5792112637}"
-      DTS:ObjectName="(local).AdventureWorks2012">
+      DTS:DTSID="{AEBA439B-6395-4641-B6C8-18E7B7E72BE2}"
+      DTS:ObjectName="OLEDB_AdventureWorks2012">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Package::AdventureWorks2012_ServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=(local);Initial Catalog=AdventureWorks2012;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[(local).SSIS_Destination_DB]"
+      DTS:refId="Package.ConnectionManagers[OLEDB_SSIS_Destination_DB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{3163C487-B1EB-46DE-8B05-E626C63B126B}"
-      DTS:ObjectName="(local).SSIS_Destination_DB">
+      DTS:DTSID="{C726D8B1-D72F-4579-BEE5-72816AE47E75}"
+      DTS:ObjectName="OLEDB_SSIS_Destination_DB">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Package::SSIS_Destination_DB_ServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=(local);Initial Catalog=SSIS_Destination_DB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{96A0C656-0F97-442D-BFAF-E199BF5FD559}"
+      DTS:ObjectName="AdventureWorks2012_ServerName"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">(local)</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{6C28294B-C71B-4344-B7AB-01EE978FC652}"
+      DTS:ObjectName="SSIS_Destination_DB_ServerName"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">(local)</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="SSIS.Pipeline.3"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{4A0259FE-0E63-4683-819C-70A1BFD17B48}"
+      DTS:DTSID="{84435BAD-6FF4-4A40-8CD2-38E0E82B0319}"
       DTS:ExecutableType="SSIS.Pipeline.3"
       DTS:LocaleID="-1"
       DTS:ObjectName="Data Flow Task"
@@ -112,8 +138,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[(local).SSIS_Destination_DB]"
-                  connectionManagerRefId="Package.ConnectionManagers[(local).SSIS_Destination_DB]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB_SSIS_Destination_DB]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB_SSIS_Destination_DB]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -256,8 +282,8 @@ FROM            Production.Product</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[(local).AdventureWorks2012]"
-                  connectionManagerRefId="Package.ConnectionManagers[(local).AdventureWorks2012]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB_AdventureWorks2012]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB_AdventureWorks2012]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -416,7 +442,7 @@ FROM            Production.Product</property>
         <NodeLayout
           Size="153,42"
           Id="Package\Data Flow Task"
-          TopLeft="340.5,79.5" />
+          TopLeft="205.5,42.5" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -426,27 +452,27 @@ FROM            Production.Product</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="152,42"
-          Id="Package\Data Flow Task\OLE DB Source"
-          TopLeft="380.5,17.5" />
-        <NodeLayout
           Size="173,42"
           Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="371.5,271.5" />
+          TopLeft="343.5,200.5" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Data Flow Task\OLE DB Source"
+          TopLeft="350.5,37.5" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
-          TopLeft="457.25,59.5">
+          TopLeft="428.25,79.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,212"
+              EndConnector="0,121"
               Start="0,0"
-              End="0,204.5">
+              End="0,113.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,204.5" />
+                    End="0,113.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -459,14 +485,6 @@ FROM            Production.Product</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Data Flow Task\OLE DB Destination">
     <Properties>
       <Property>
@@ -476,6 +494,14 @@ FROM            Production.Product</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
